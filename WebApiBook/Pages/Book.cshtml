@@ -1,0 +1,17 @@
+﻿@page
+@model WebApiBook.Pages.BookModel
+@{
+    ViewData["Title"] = "Books";
+}
+
+<div class="text-center">
+    @foreach (var item in Model.Books)
+    {
+        <p>@item.Title</p>
+        <p>@item.Author</p>
+        <p>@item.Style</p>
+        <p>@item.Publisher</p>
+        <p>@item.PublishYear</p>  
+        <br />
+    }
+</div>
