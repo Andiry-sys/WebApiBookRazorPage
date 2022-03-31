@@ -1,9 +1,19 @@
 ﻿using BooksLibrary.Models;
 using DataAccessLayer.DTO;
+using Microsoft.Extensions.DependencyInjection;
 using Utilites;
 
 namespace DataAccessLayer.Service
 {
+    public static class MyServiceCollectionExtensions
+    {
+        public static IServiceCollection AddMyServiceDependencies(this IServiceCollection services)
+        {
+            services.AddScoped<IBookService, BookService>();
+            services.AddScoped<IDataAccess, DataAccess>();
+            return services;
+        }
+    }
     public class BookService: IBookService
     {
         private List<Book> _books { get; }
@@ -15,7 +25,7 @@ namespace DataAccessLayer.Service
             _books = CreateBooks();
             _book = new();          
             _dataAccess = dataAccess;
-            _dataAccess.WriteToFile(@"C:\Users\Admin\source\repos\.ASPNET\Modul_2_3\WebApiBook\DataAccessLayer\Data.txt");
+            _dataAccess.WriteToFile(@"C:\Playground\WebApiBook\DataAccessLayer\Data.txt", _books);
             
         }      
 
@@ -53,5 +63,6 @@ namespace DataAccessLayer.Service
                 _book.Add(line);
             }
         }
+
     }
 }

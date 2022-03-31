@@ -6,18 +6,18 @@ namespace DataAccessLayer.DTO
 {
     public class DataAccess : IDataAccess
     {
-        private readonly IBookService _bookService;
-        private List<Book> _books ;  
-        public DataAccess(IBookService bookService)
+        //private readonly IBookService _bookService;
+        //private List<Book> _books ;  
+        public DataAccess(/*IBookService bookService*/)
         {
-            _bookService = bookService;
-            _books = _bookService.GetBooks();
+            //_bookService = bookService;
+            //_books = _bookService.GetBooks();
         }
 
-        public void WriteToFile(string path)
+        public void WriteToFile(string path, List<Book> books)
         {
             using StreamWriter writer = new StreamWriter(path,false);
-            foreach (Book it in _books)
+            foreach (Book it in books)
             {
                 writer.WriteLine(it.Id);
                 writer.WriteLine(it.Title);
@@ -30,7 +30,7 @@ namespace DataAccessLayer.DTO
 
         public IEnumerable<Book> Read ()
         {
-            return _books;
+            return null;
         }
     }
 }
