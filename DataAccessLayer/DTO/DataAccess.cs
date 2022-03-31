@@ -4,7 +4,7 @@ using DataAccessLayer.Service;
 
 namespace DataAccessLayer.DTO
 {
-    internal class DataAccess : IDataAccess
+    public class DataAccess : IDataAccess
     {
         private readonly IBookService _bookService;
         private List<Book> _books ;  
@@ -13,6 +13,21 @@ namespace DataAccessLayer.DTO
             _bookService = bookService;
             _books = _bookService.GetBooks();
         }
+
+        public void WriteToFile(string path)
+        {
+            using StreamWriter writer = new StreamWriter(path,false);
+            foreach (Book it in _books)
+            {
+                writer.WriteLine(it.Id);
+                writer.WriteLine(it.Title);
+                writer.WriteLine(it.Author);
+                writer.WriteLine(it.Style);
+                writer.WriteLine(it.Publisher);
+                writer.WriteLine(it.PublishYear);
+            }
+        }
+
         public IEnumerable<Book> Read ()
         {
             return _books;

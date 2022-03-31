@@ -1,4 +1,5 @@
 ﻿using BooksLibrary.Models;
+using DataAccessLayer.DTO;
 using Utilites;
 
 namespace DataAccessLayer.Service
@@ -6,28 +7,29 @@ namespace DataAccessLayer.Service
     public class BookService: IBookService
     {
         private List<Book> _books { get; }
-        public BookService ()
+        private List<string> _book { get; }
+        private readonly IDataAccess _dataAccess;
+        public BookService (IDataAccess dataAccess)
         {
             _books = new List<Book>();  
             _books = CreateBooks();
+            _book = new();          
+            _dataAccess = dataAccess;
+            _dataAccess.WriteToFile(@"C:\Users\Admin\source\repos\.ASPNET\Modul_2_3\WebApiBook\DataAccessLayer\Data.txt");
             
-        }
+        }      
 
-        public void Upload ( string path )
+        private Book CreateBook(int id)
         {
-            throw new NotImplementedException();
-        }
-
-        private Book CreateBook()
-        {
-            return new Book { Author = RandomService.RandomString(),Title = RandomService.RandomString(),Publisher = RandomService.RandomString(),Style = RandomService.RandomString(),PublishYear = RandomService.RandomNumber() };
+            
+            return new Book {Id= id,Author = RandomService.RandomString(),Title = RandomService.RandomString(),Publisher = RandomService.RandomString(),Style = RandomService.RandomString(),PublishYear = RandomService.RandomNumber() };
         }
 
         private List<Book> CreateBooks()
         {
-            for (int i = 0; i < 7; i++)
+            for (int i = 0; i < 5; i++)
             {
-                _books.Add(CreateBook());
+                _books.Add(CreateBook(i));
             }
             return _books; 
         }
@@ -37,9 +39,19 @@ namespace DataAccessLayer.Service
             return _books;
         }
 
-        public void ConvertToBook ()
+        public Book GetBook(int id)
         {
-            throw new NotImplementedException();
+            return CreateBook(id);
+        }
+
+        public void UpLoad(string path)
+        {
+            using StreamReader reader = new StreamReader(path);
+            string? line;
+            while ((line = reader.ReadLine()) != null)
+            {
+                _book.Add(line);
+            }
         }
     }
 }

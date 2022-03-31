@@ -3,8 +3,9 @@ using BooksLibrary.Models;
 
 namespace DataAccessLayer.DTO
 {
-    internal interface IDataAccess
+    public interface IDataAccess
     {
         IEnumerable<Book> Read ();
+        void WriteToFile(string path);
     }
 }

@@ -7,9 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApiBook", "WebApiBook\We
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BooksLibrary", "BooksLibrary\BooksLibrary.csproj", "{D5B12A8E-48E7-46E9-88B4-D0B09DDC3F7F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccessLayer", "DataAccessLayer\DataAccessLayer.csproj", "{FAAB854A-2B5C-4EBD-BD48-361932137B91}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataAccessLayer", "DataAccessLayer\DataAccessLayer.csproj", "{FAAB854A-2B5C-4EBD-BD48-361932137B91}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utilites", "Utilites\Utilites.csproj", "{8A6CFA36-0B42-41E8-98E3-DEC2D8B8BDA3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Utilites", "Utilites\Utilites.csproj", "{8A6CFA36-0B42-41E8-98E3-DEC2D8B8BDA3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -3,9 +3,10 @@
 namespace DataAccessLayer.Service
 {
     public interface IBookService
-    {
-        void Upload(string path);
+    {       
         List<Book> GetBooks();
-        void ConvertToBook ();
+        Book GetBook (int id);
+        void UpLoad(string path);
+        
     }
 }
