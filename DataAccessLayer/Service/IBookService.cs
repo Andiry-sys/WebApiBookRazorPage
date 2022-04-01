@@ -6,7 +6,7 @@ namespace DataAccessLayer.Service
     {       
         List<Book> GetBooks();
         Book GetBook (int id);
-        void UpLoad(string path);
+       
         
     }
 }

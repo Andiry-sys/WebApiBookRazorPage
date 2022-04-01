@@ -10,6 +10,7 @@ namespace WebApiBook.Pages
         private readonly ILogger<Book> _logger;
         private readonly Book _book = new();
 
+        public int Id { get => _book.Id; }
         public string? Title { get => _book.Title;  }
         public string? Author { get => _book.Author; }
         public string? Style { get => _book.Style;  }
@@ -20,11 +21,12 @@ namespace WebApiBook.Pages
         {            
             _logger = logger;
             _bookService = bookService;
-            _book = _bookService.GetBook(_book.Id);
+            _book = _bookService.GetBook(Id);
         }
 
         public void OnGet(int id)
         {
+            
         }
     }
 }

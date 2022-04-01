@@ -16,17 +16,16 @@ namespace DataAccessLayer.Service
     }
     public class BookService: IBookService
     {
-        private List<Book> _books { get; }
-        private List<string> _book { get; }
+        private List<Book> _books = new List<Book>();
+
         private readonly IDataAccess _dataAccess;
         public BookService (IDataAccess dataAccess)
-        {
-            _books = new List<Book>();  
-            _books = CreateBooks();
-            _book = new();          
+        {        
+            //_books = CreateBooks();
             _dataAccess = dataAccess;
-            _dataAccess.WriteToFile(@"C:\Playground\WebApiBook\DataAccessLayer\Data.txt", _books);
-            
+            _dataAccess.WriteToFile(@"C:\Users\Admin\source\repos\.ASPNET\Modul_2_3\Web2.0\WebApiBook\DataAccessLayer\Data.txt", _books);
+            //C:\Users\Admin\source\repos\.ASPNET\Modul_2_3\Web2.0\WebApiBook\DataAccessLayer\Data.txt
+            _books = _dataAccess.Read(@"C:\Users\Admin\source\repos\.ASPNET\Modul_2_3\Web2.0\WebApiBook\DataAccessLayer\Data.txt");           
         }      
 
         private Book CreateBook(int id)
@@ -51,18 +50,10 @@ namespace DataAccessLayer.Service
 
         public Book GetBook(int id)
         {
-            return CreateBook(id);
+            return _books.FirstOrDefault(x => x.Id == id);
         }
 
-        public void UpLoad(string path)
-        {
-            using StreamReader reader = new StreamReader(path);
-            string? line;
-            while ((line = reader.ReadLine()) != null)
-            {
-                _book.Add(line);
-            }
-        }
+        
 
     }
 }

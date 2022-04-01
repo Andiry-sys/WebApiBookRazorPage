@@ -5,7 +5,8 @@ namespace DataAccessLayer.DTO
 {
     public interface IDataAccess
     {
-        IEnumerable<Book> Read ();
+       
         void WriteToFile(string path, List<Book> books);
+        List<Book> Read(string path);
     }
 }
