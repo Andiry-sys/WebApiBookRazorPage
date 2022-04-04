@@ -1,5 +1,6 @@
 using BooksLibrary.Models;
 using DataAccessLayer.Service;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace WebApiBook.Pages
@@ -9,8 +10,9 @@ namespace WebApiBook.Pages
         private readonly IBookService _bookService;
         private readonly ILogger<Book> _logger;
         private readonly Book _book = new();
+       
 
-        public int Id { get => _book.Id; }
+        public int Id { get => Id;  set { Id = value; } }       
         public string? Title { get => _book.Title;  }
         public string? Author { get => _book.Author; }
         public string? Style { get => _book.Style;  }
@@ -20,13 +22,14 @@ namespace WebApiBook.Pages
         public SelectedBookModel(ILogger<Book> logger, IBookService bookService)
         {            
             _logger = logger;
-            _bookService = bookService;
+            _bookService = bookService;            
             _book = _bookService.GetBook(Id);
         }
 
+        
         public void OnGet(int id)
         {
-            
+            Id = id;
         }
     }
 }

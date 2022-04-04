@@ -21,10 +21,8 @@ namespace DataAccessLayer.Service
         private readonly IDataAccess _dataAccess;
         public BookService (IDataAccess dataAccess)
         {        
-            //_books = CreateBooks();
             _dataAccess = dataAccess;
-            _dataAccess.WriteToFile(@"C:\Users\Admin\source\repos\.ASPNET\Modul_2_3\Web2.0\WebApiBook\DataAccessLayer\Data.txt", _books);
-            //C:\Users\Admin\source\repos\.ASPNET\Modul_2_3\Web2.0\WebApiBook\DataAccessLayer\Data.txt
+           // _dataAccess.WriteToFile(@"C:\Users\Admin\source\repos\.ASPNET\Modul_2_3\Web2.0\WebApiBook\DataAccessLayer\Data.txt", _books);
             _books = _dataAccess.Read(@"C:\Users\Admin\source\repos\.ASPNET\Modul_2_3\Web2.0\WebApiBook\DataAccessLayer\Data.txt");           
         }      
 
@@ -51,6 +49,7 @@ namespace DataAccessLayer.Service
         public Book GetBook(int id)
         {
             return _books.FirstOrDefault(x => x.Id == id);
+
         }
 
         

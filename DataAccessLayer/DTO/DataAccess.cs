@@ -6,8 +6,8 @@ namespace DataAccessLayer.DTO
 {
     public class DataAccess : IDataAccess
     {
-        List<string> list = new List<string>();
-        List<Book> _books = new List<Book>();
+        private List<string> list = new List<string>();
+        private List<Book> _books = new List<Book>();
         public DataAccess()
         {
             
