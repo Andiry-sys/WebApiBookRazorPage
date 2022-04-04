@@ -1,7 +1,5 @@
 ﻿@page "{id}"
-{
-  var Id = RouteData.Values["id"];
-}
+
 @model WebApiBook.Pages.SelectedBookModel
 @{
     ViewData["Title"] = Model.Title;
@@ -9,7 +7,6 @@
 
 
 <div class="text-center">
-    <p>The Id is @Model.Id</p>
     <h2>@Model.Title</h2>
     <p>@Model.Author</p>
     <p>@Model.Style</p>

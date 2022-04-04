@@ -9,10 +9,13 @@ namespace WebApiBook.Pages
     {
         private readonly IBookService _bookService;
         private readonly ILogger<Book> _logger;
-        private readonly Book _book = new();
+
        
 
-        public int Id { get => Id;  set { Id = value; } }       
+        private  Book _book = new();       
+
+        [BindProperty(SupportsGet = true)]
+        public int Id { get;  set; }
         public string? Title { get => _book.Title;  }
         public string? Author { get => _book.Author; }
         public string? Style { get => _book.Style;  }
@@ -23,13 +26,13 @@ namespace WebApiBook.Pages
         {            
             _logger = logger;
             _bookService = bookService;            
-            _book = _bookService.GetBook(Id);
         }
 
         
         public void OnGet(int id)
         {
             Id = id;
+            _book = _bookService.GetBook(id);
         }
     }
 }

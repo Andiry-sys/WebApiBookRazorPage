@@ -49,10 +49,9 @@ namespace DataAccessLayer.Service
         public Book GetBook(int id)
         {
             return _books.FirstOrDefault(x => x.Id == id);
-
         }
 
-        
+
 
     }
 }
