@@ -6,7 +6,6 @@ namespace DataAccessLayer.Service
     {       
         List<Book> GetBooks();
         Book GetBook (int id);
-       
-        
+        List<Book> FilterBooks(string SearchText);    
     }
 }

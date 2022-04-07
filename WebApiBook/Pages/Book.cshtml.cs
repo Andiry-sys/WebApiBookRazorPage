@@ -20,5 +20,10 @@ namespace WebApiBook.Pages
         public void OnGet()
         {
         }
+
+        public void OnPost(string text)
+        {
+            Books = _bookService.FilterBooks(text);
+        }
     }
 }

@@ -10,4 +10,7 @@
         public string? Publisher { get; set; }
         public int? PublishYear { get; set; }
     }
+
+    
+    
 }

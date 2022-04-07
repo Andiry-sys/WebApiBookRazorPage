@@ -1,14 +1,25 @@
-﻿@page 
+﻿
+
+@page 
 @model WebApiBook.Pages.BookModel
 @{
     ViewData["Title"] = "Books";
 }
 
+<form method="post">
+    <input type="search" name="text" class="text" placeholder="Search here"/>
+    <input type="submit" name="submit" class="submit" value="Search"/>
+</form>
+
 <div class="text-center">
+    <h3>Список книг</h3>
+    <ol class="rounded">
     @foreach (var item in Model.Books)
     {
-        <a href="SelectedBook/@item.Id">@item.Title</a>        
+        <li><a href="SelectedBook/@item.Id">@item.Title</a></li>       
         <br />
     }
+    </ol>
+
 </div>
 

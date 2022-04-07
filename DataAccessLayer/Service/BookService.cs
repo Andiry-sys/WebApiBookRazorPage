@@ -51,7 +51,9 @@ namespace DataAccessLayer.Service
             return _books.FirstOrDefault(x => x.Id == id);
         }
 
-
-
+        public List<Book> FilterBooks(string SearchText)
+        {
+            return _books.Where(x => x.Author.Contains(SearchText) || x.Title.Contains(SearchText) || x.Publisher.Contains(SearchText) || x.Style.Contains(SearchText) || x.PublishYear.ToString().Contains(SearchText)).ToList();
+        }
     }
 }
