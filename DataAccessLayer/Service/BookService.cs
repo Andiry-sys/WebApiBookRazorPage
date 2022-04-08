@@ -17,30 +17,13 @@ namespace DataAccessLayer.Service
     public class BookService: IBookService
     {
         private List<Book> _books = new List<Book>();
-
         private readonly IDataAccess _dataAccess;
         public BookService (IDataAccess dataAccess)
         {        
-            _dataAccess = dataAccess;
-           // _dataAccess.WriteToFile(@"C:\Users\Admin\source\repos\.ASPNET\Modul_2_3\Web2.0\WebApiBook\DataAccessLayer\Data.txt", _books);
-            _books = _dataAccess.Read(@"C:\Users\Admin\source\repos\.ASPNET\Modul_2_3\Web2.0\WebApiBook\DataAccessLayer\Data.txt");           
+            _dataAccess = dataAccess;            
+            _books = _dataAccess.Read();           
         }      
-
-        private Book CreateBook(int id)
-        {
-            
-            return new Book {Id= id,Author = RandomService.RandomString(),Title = RandomService.RandomString(),Publisher = RandomService.RandomString(),Style = RandomService.RandomString(),PublishYear = RandomService.RandomNumber() };
-        }
-
-        private List<Book> CreateBooks()
-        {
-            for (int i = 0; i < 5; i++)
-            {
-                _books.Add(CreateBook(i));
-            }
-            return _books; 
-        }
-
+        
         public List<Book> GetBooks ()
         {
             return _books;
@@ -55,5 +38,38 @@ namespace DataAccessLayer.Service
         {
             return _books.Where(x => x.Author.Contains(SearchText) || x.Title.Contains(SearchText) || x.Publisher.Contains(SearchText) || x.Style.Contains(SearchText) || x.PublishYear.ToString().Contains(SearchText)).ToList();
         }
+
+        public Book Update(Book book)
+        {
+            
+           var bookToUpdate = _books.FirstOrDefault(x => x.Id == book.Id);
+            
+            if (bookToUpdate != null)
+            {
+                bookToUpdate.Author = book.Author;
+                bookToUpdate.Title = book.Title;
+                bookToUpdate.Publisher = book.Publisher;
+                bookToUpdate.Style = book.Style;
+                bookToUpdate.PublishYear = book.PublishYear;
+                              
+            }
+            return bookToUpdate;
+            
+        }
+
+        public void Add(Book book)
+        {
+            _dataAccess.AddBook(book);
+        }
+
+        public void Delete(int id)
+        {
+            var bookToDelete = _books.FirstOrDefault(x => x.Id == id);
+            if (bookToDelete != null)
+            {
+                _books.Remove(bookToDelete);
+                _dataAccess.WriteToFile(_books);
+            }
+        }        
     }
 }

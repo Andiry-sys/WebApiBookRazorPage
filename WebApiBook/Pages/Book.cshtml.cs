@@ -1,5 +1,6 @@
 using BooksLibrary.Models;
 using DataAccessLayer.Service;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 
@@ -16,14 +17,16 @@ namespace WebApiBook.Pages
             _logger = logger;
             _bookService = bookService;
             Books = _bookService.GetBooks();
-        }
-        public void OnGet()
-        {
-        }
-
+        }       
+        
         public void OnPost(string text)
         {
             Books = _bookService.FilterBooks(text);
+        }
+
+        public IActionResult OnGetAdd()
+        {
+            return RedirectToPage("/AddBook");
         }
     }
 }

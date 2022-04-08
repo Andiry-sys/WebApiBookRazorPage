@@ -1,0 +1,19 @@
+﻿@page
+@model WebApiBook.Pages.AddBookModel
+@{
+    ViewData["Title"] = "Add Book";
+}
+
+<form method="post" class="was-validated">
+<div class="text-center" id="bookdiv">
+    <ol class="rounded">
+    <p>Назва: <input asp-for="Title" required></p>
+    <p>Автор: <input asp-for="Author" required></p>
+    <p>Стиль: <input asp-for="Style" required></p>
+    <p>Видавництво:  <input asp-for="Publisher" required></p>
+    <p>Рік публікації: <input asp-for = "PublishYear" required></p>
+    
+    <input type="submit" asp-page-handler="Add" value="Add">
+    </ol>
+</div>
+</form>

@@ -8,12 +8,14 @@
 <form method="post">
 <div class="text-center" id="bookdiv">
     <ol class="rounded">
-    <p>Назва: <input type="text" value=@Model.Title></p>
-    <p>Автор: <input type="text" value=@Model.Author ></p>
-    <p>Стиль: <input type="text" value=@Model.Style></p>
-    <p>Видавництво:  <input type="text" value=@Model.Publisher ></p>
-    <p>Рік публікації: <input type="text" value=@Model.PublishYear></p>
+    <p>Назва: <input asp-for="Title"></p>
+    <p>Автор: <input asp-for="Author" ></p>
+    <p>Стиль: <input asp-for="Style"></p>
+    <p>Видавництво:  <input asp-for="Publisher"></p>
+    <p>Рік публікації: <input asp-for = "PublishYear"></p>
+    
     <input type="submit" name="submit" class="submit" value="Save">
+    <input type = "submit" asp-page-handler="Delete" value= "Delete Book"/>
     </ol>
 </div>
 </form>

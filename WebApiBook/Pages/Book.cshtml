@@ -1,5 +1,4 @@
 ﻿
-
 @page 
 @model WebApiBook.Pages.BookModel
 @{
@@ -9,9 +8,10 @@
 <form method="post">
     <input type="search" name="text" class="text" placeholder="Search here"/>
     <input type="submit" name="submit" class="submit" value="Search"/>
-</form>
+    
 
 <div class="text-center">
+    <br />
     <h3>Список книг</h3>
     <ol class="rounded">
     @foreach (var item in Model.Books)
@@ -20,6 +20,8 @@
         <br />
     }
     </ol>
-
+    <a href="AddBook"  >Add Book</a>  
+    
 </div>
+</form>
 
